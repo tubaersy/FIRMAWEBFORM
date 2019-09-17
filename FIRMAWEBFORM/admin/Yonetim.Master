@@ -1,15 +1,20 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Yonetim.Master.cs" Inherits="FIRMAWEBFORM.admin.Site1" %>
 
-<!DOCTYPE html>
 
+
+<!DOCTYPE html>
+    
 <html>
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+    <link href="../StyleSheet1.css" rel="stylesheet" />
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
+    
     <form id="form1" runat="server">
         <div>
 

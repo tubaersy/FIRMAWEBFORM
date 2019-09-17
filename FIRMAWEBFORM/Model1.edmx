@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="FIRMAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
         <EntityType Name="KATEGORI">
           <Key>
             <PropertyRef Name="KATEGORI_REFNO" />
@@ -75,33 +85,33 @@
 warning 6002: The table/view 'FIRMA.dbo.VW_URUN_' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_URUN_">
           <Key>
+            <PropertyRef Name="KATEGORI_ADI" />
+            <PropertyRef Name="MARKA_REFNO" />
+            <PropertyRef Name="RESIM1" />
+            <PropertyRef Name="KDV_ORANI" />
             <PropertyRef Name="URUN_ADI" />
             <PropertyRef Name="FIYATI" />
             <PropertyRef Name="DURUMU" />
             <PropertyRef Name="KATEGORI_REFNO" />
-            <PropertyRef Name="KDV_ORANI" />
-            <PropertyRef Name="MARKA_REFNO" />
-            <PropertyRef Name="KATEGORI_ADI" />
-            <PropertyRef Name="RESIM1" />
             <PropertyRef Name="URUN_REFNO" />
             <PropertyRef Name="MARKA_ADI" />
           </Key>
+          <Property Name="KATEGORI_ADI" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RESIM4" Type="varchar" MaxLength="50" />
+          <Property Name="RESIM2" Type="varchar" MaxLength="50" />
+          <Property Name="RESIM3" Type="varchar" MaxLength="50" />
+          <Property Name="ACIKLAMA" Type="varchar" MaxLength="4000" />
+          <Property Name="MARKA_REFNO" Type="int" Nullable="false" />
+          <Property Name="RESIM1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="KDV_ORANI" Type="int" Nullable="false" />
           <Property Name="URUN_ADI" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FIYATI" Type="numeric" Precision="10" Scale="2" Nullable="false" />
           <Property Name="DURUMU" Type="bit" Nullable="false" />
           <Property Name="KATEGORI_REFNO" Type="int" Nullable="false" />
-          <Property Name="KDV_ORANI" Type="int" Nullable="false" />
-          <Property Name="MARKA_REFNO" Type="int" Nullable="false" />
-          <Property Name="ACIKLAMA" Type="varchar" MaxLength="4000" />
-          <Property Name="KATEGORI_ADI" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="RESIM4" Type="varchar" MaxLength="50" />
-          <Property Name="RESIM3" Type="varchar" MaxLength="50" />
-          <Property Name="RESIM2" Type="varchar" MaxLength="50" />
-          <Property Name="RESIM1" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="URUN_REFNO" Type="int" Nullable="false" />
           <Property Name="MARKA_ADI" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
-        <Association Name="FK_URUN_KATEGORI">
+        <Association Name="FK_dbo_URUN_dbo_KATEGORI_KATEGORI_REFNO">
           <End Role="KATEGORI" Type="Self.KATEGORI" Multiplicity="1" />
           <End Role="URUN" Type="Self.URUN" Multiplicity="*" />
           <ReferentialConstraint>
@@ -113,7 +123,7 @@ warning 6002: The table/view 'FIRMA.dbo.VW_URUN_' does not have a primary key de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_URUN_MARKA">
+        <Association Name="FK_dbo_URUN_dbo_MARKA_MARKA_REFNO">
           <End Role="MARKA" Type="Self.MARKA" Multiplicity="1" />
           <End Role="URUN" Type="Self.URUN" Multiplicity="*" />
           <ReferentialConstraint>
@@ -126,6 +136,7 @@ warning 6002: The table/view 'FIRMA.dbo.VW_URUN_' does not have a primary key de
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="FIRMAModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KATEGORI" EntityType="Self.KATEGORI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KULLANICI" EntityType="Self.KULLANICI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MARKA" EntityType="Self.MARKA" Schema="dbo" store:Type="Tables" />
@@ -135,27 +146,27 @@ warning 6002: The table/view 'FIRMA.dbo.VW_URUN_' does not have a primary key de
           <EntitySet Name="URUN" EntityType="Self.URUN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VW_URUN_" EntityType="Self.VW_URUN_" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
+    [VW_URUN_].[KATEGORI_ADI] AS [KATEGORI_ADI], 
+    [VW_URUN_].[RESIM4] AS [RESIM4], 
+    [VW_URUN_].[RESIM2] AS [RESIM2], 
+    [VW_URUN_].[RESIM3] AS [RESIM3], 
+    [VW_URUN_].[ACIKLAMA] AS [ACIKLAMA], 
+    [VW_URUN_].[MARKA_REFNO] AS [MARKA_REFNO], 
+    [VW_URUN_].[RESIM1] AS [RESIM1], 
+    [VW_URUN_].[KDV_ORANI] AS [KDV_ORANI], 
     [VW_URUN_].[URUN_ADI] AS [URUN_ADI], 
     [VW_URUN_].[FIYATI] AS [FIYATI], 
     [VW_URUN_].[DURUMU] AS [DURUMU], 
     [VW_URUN_].[KATEGORI_REFNO] AS [KATEGORI_REFNO], 
-    [VW_URUN_].[KDV_ORANI] AS [KDV_ORANI], 
-    [VW_URUN_].[MARKA_REFNO] AS [MARKA_REFNO], 
-    [VW_URUN_].[ACIKLAMA] AS [ACIKLAMA], 
-    [VW_URUN_].[KATEGORI_ADI] AS [KATEGORI_ADI], 
-    [VW_URUN_].[RESIM4] AS [RESIM4], 
-    [VW_URUN_].[RESIM3] AS [RESIM3], 
-    [VW_URUN_].[RESIM2] AS [RESIM2], 
-    [VW_URUN_].[RESIM1] AS [RESIM1], 
     [VW_URUN_].[URUN_REFNO] AS [URUN_REFNO], 
     [VW_URUN_].[MARKA_ADI] AS [MARKA_ADI]
     FROM [dbo].[VW_URUN_] AS [VW_URUN_]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_URUN_KATEGORI" Association="Self.FK_URUN_KATEGORI">
+          <AssociationSet Name="FK_dbo_URUN_dbo_KATEGORI_KATEGORI_REFNO" Association="Self.FK_dbo_URUN_dbo_KATEGORI_KATEGORI_REFNO">
             <End Role="KATEGORI" EntitySet="KATEGORI" />
             <End Role="URUN" EntitySet="URUN" />
           </AssociationSet>
-          <AssociationSet Name="FK_URUN_MARKA" Association="Self.FK_URUN_MARKA">
+          <AssociationSet Name="FK_dbo_URUN_dbo_MARKA_MARKA_REFNO" Association="Self.FK_dbo_URUN_dbo_MARKA_MARKA_REFNO">
             <End Role="MARKA" EntitySet="MARKA" />
             <End Role="URUN" EntitySet="URUN" />
           </AssociationSet>
@@ -275,6 +286,7 @@ warning 6002: The table/view 'FIRMA.dbo.VW_URUN_' does not have a primary key de
             <End Role="URUN" EntitySet="URUNs" />
           </AssociationSet>
           <EntitySet Name="VW_URUN_" EntityType="FIRMAModel.VW_URUN_" />
+          <EntitySet Name="C__MigrationHistory" EntityType="FIRMAModel.C__MigrationHistory" />
         </EntityContainer>
         <EntityType Name="VW_URUN_">
           <Key>
@@ -303,6 +315,16 @@ warning 6002: The table/view 'FIRMA.dbo.VW_URUN_' does not have a primary key de
           <Property Name="RESIM1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="URUN_REFNO" Type="Int32" Nullable="false" />
           <Property Name="MARKA_ADI" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -400,6 +422,16 @@ warning 6002: The table/view 'FIRMA.dbo.VW_URUN_' does not have a primary key de
                 <ScalarProperty Name="DURUMU" ColumnName="DURUMU" />
                 <ScalarProperty Name="FIYATI" ColumnName="FIYATI" />
                 <ScalarProperty Name="URUN_ADI" ColumnName="URUN_ADI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="FIRMAModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

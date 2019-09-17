@@ -33,5 +33,6 @@ namespace FIRMAWEBFORM
         public virtual DbSet<SLIDER> SLIDERs { get; set; }
         public virtual DbSet<URUN> URUNs { get; set; }
         public virtual DbSet<VW_URUN_> VW_URUN_ { get; set; }
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Yonetim.Master" AutoEventWireup="true" CodeBehind="Kategori.aspx.cs" Inherits="FIRMAWEBFORM.admin.Kategori" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .auto-style1 {
@@ -33,21 +34,20 @@
                         </tr>
                         <tr>
                             <td>
-                                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" GridLines="Horizontal" Width="100%" AllowPaging="True" DataKeyNames="KATEGORI_REFNO" OnPageIndexChanging="GridView1_PageIndexChanging" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" PageSize="5">
+                                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" GridLines="Horizontal" Width="100%" AllowPaging="True" DataKeyNames="KATEGORI_REFNO" OnPageIndexChanging="GridView1_PageIndexChanging" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" PageSize="5" ForeColor="Black">
                                     <Columns>
                                         <asp:CommandField ShowSelectButton="True" HeaderText="Seç" />
                                         <asp:BoundField DataField="KATEGORI_REFNO" HeaderText="Kategori Refno" />
                                         <asp:BoundField DataField="KATEGORI_ADI" HeaderText="Kategori Adı" />
                                     </Columns>
-                                    <FooterStyle BackColor="White" ForeColor="#333333" />
-                                    <HeaderStyle BackColor="#336666" Font-Bold="True" ForeColor="White" />
-                                    <PagerStyle BackColor="#336666" ForeColor="White" HorizontalAlign="Center" />
-                                    <RowStyle BackColor="White" ForeColor="#333333" />
-                                    <SelectedRowStyle BackColor="#339966" Font-Bold="True" ForeColor="White" />
+                                    <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+                                    <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
+                                    <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+                                    <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
                                     <SortedAscendingCellStyle BackColor="#F7F7F7" />
-                                    <SortedAscendingHeaderStyle BackColor="#487575" />
+                                    <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
                                     <SortedDescendingCellStyle BackColor="#E5E5E5" />
-                                    <SortedDescendingHeaderStyle BackColor="#275353" />
+                                    <SortedDescendingHeaderStyle BackColor="#242121" />
                                 </asp:GridView>
                             </td>
                             <td>&nbsp;</td>

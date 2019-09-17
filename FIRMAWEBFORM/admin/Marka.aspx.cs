@@ -106,11 +106,11 @@ namespace FIRMAWEBFORM.admin
 
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+
+            GridView1.PageIndex = e.NewPageIndex;
             GridView1.DataSource = db.MARKAs.Where(m => m.MARKA_ADI.Contains(txtARA.Text)).ToList();
             GridView1.DataBind();
 
-            pnlKayit.Visible = false;
-            pnlListe.Visible = true;
         }
     }
 }
