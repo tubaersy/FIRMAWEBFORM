@@ -86,7 +86,7 @@
                             <td>
                                 <asp:Button ID="Button3" runat="server" Text="Kaydet" ValidationGroup="KayitFormu" OnClick="Button3_Click" />
                                 <asp:Button ID="Button4" runat="server" Text="Vazgeç" OnClick="Button4_Click" style="width: 64px" />
-                                <asp:Button ID="Button5" runat="server" Text="Sil" OnClick="Button5_Click" />
+                                <asp:Button ID="Button5" runat="server" Text="Sil" OnClick="Button5_Click" OnClientClick="return confirm ('Kayıt Silinsin mi')" />
                             </td>
                         </tr>
                     </table>
