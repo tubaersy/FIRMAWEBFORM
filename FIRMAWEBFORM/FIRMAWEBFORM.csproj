@@ -78,6 +78,7 @@
     <Content Include="admin\Kategori.aspx" />
     <Content Include="admin\Marka.aspx" />
     <Content Include="admin\Sayfa.aspx" />
+    <Content Include="admin\Slider.aspx" />
     <Content Include="admin\Urun.aspx" />
     <Content Include="ckeditor\adapters\jquery.js" />
     <Content Include="ckeditor\build-config.js" />
@@ -724,6 +725,13 @@
     </Compile>
     <Compile Include="admin\Sayfa.aspx.designer.cs">
       <DependentUpon>Sayfa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Slider.aspx.cs">
+      <DependentUpon>Slider.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Slider.aspx.designer.cs">
+      <DependentUpon>Slider.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\Urun.aspx.cs">
       <DependentUpon>Urun.aspx</DependentUpon>

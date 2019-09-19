@@ -16,6 +16,8 @@
         width: 150px;
     }
     </style>
+    <script src="../ckfinder/ckfinder.js"></script>
+    <script src="../ckeditor/ckeditor.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table cellspacing="0" class="auto-style1">
@@ -39,7 +41,7 @@
                                         <asp:CommandField ShowSelectButton="True" HeaderText="Seç" />
                                         <asp:BoundField DataField="SAYFA_REFNO" HeaderText="Sayfa Refno" />
                                         <asp:BoundField DataField="BASLIK" HeaderText="Başlık" />
-                                        <asp:BoundField DataField="ICERIK" HeaderText="İçerik" />
+                                        <asp:BoundField DataField="ICERIK" HeaderText="İçerik" HtmlEncode="False"/>
                                     </Columns>
                                     <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
                                     <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
@@ -106,4 +108,11 @@
             <td>&nbsp;</td>
         </tr>
     </table>
+
+    <script>
+        var editor = CKEDITOR.replace('ContentPlaceHolder1_txtICERIK');
+
+        CKFinder.setupCKEditor(editor, '/ckfinder/');
+    </script>
+
 </asp:Content>
