@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\Kategori.aspx" />
+    <Content Include="admin\Kullanici.aspx" />
     <Content Include="admin\Marka.aspx" />
     <Content Include="admin\Proje.aspx" />
     <Content Include="admin\Sayfa.aspx" />
@@ -712,6 +713,13 @@
     </Compile>
     <Compile Include="admin\Kategori.aspx.designer.cs">
       <DependentUpon>Kategori.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Kullanici.aspx.cs">
+      <DependentUpon>Kullanici.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Kullanici.aspx.designer.cs">
+      <DependentUpon>Kullanici.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\Marka.aspx.cs">
       <DependentUpon>Marka.aspx</DependentUpon>

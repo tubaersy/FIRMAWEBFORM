@@ -176,7 +176,7 @@ namespace FIRMAWEBFORM.admin
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridView1.PageIndex = e.NewPageIndex;
-            GridView1.DataSource = db.URUNs.Where(k => k.URUN_ADI.Contains(txtURUN_ADI.Text)).ToList();
+            GridView1.DataSource = db.URUNs.Where(k => k.URUN_ADI.Contains(txtARA.Text)).ToList();
             GridView1.DataBind();
         }
     }

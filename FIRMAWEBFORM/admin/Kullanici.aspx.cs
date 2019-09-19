@@ -7,40 +7,37 @@ using System.Web.UI.WebControls;
 
 namespace FIRMAWEBFORM.admin
 {
-    public partial class Proje : System.Web.UI.Page
+    public partial class Kullanici : System.Web.UI.Page
     {
         FIRMAEntities db = new FIRMAEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
-            GridView1.DataSource = db.PROJEs.ToList();
+            GridView1.DataSource = db.KULLANICIs.ToList();
             GridView1.DataBind();
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             int refno = Convert.ToInt32(GridView1.SelectedDataKey.Value.ToString());
-            PROJE p = db.PROJEs.Find(refno);
+            KULLANICI k = db.KULLANICIs.Find(refno);
 
-            if (p != null)
+            if (k != null)
             {
-                txtPROJE_REFNO.Text = p.PROJE_REFNO.ToString();
-                txtPROJE_ADI.Text = p.PROJE_ADI;
-                txtACIKLAMA.Text = p.ACIKLAMA;
-
+                txtKULLANICI_ADI.Text = k.KULLANICI_ADI;
+                txtKULLANICI_REFNO.Text = k.KULLANICI_REFNO.ToString();
+                txtPAROLA.Text = k.PAROLA;
             }
 
             pnlKayit.Visible = true;
             pnlListe.Visible = false;
-
         }
 
         protected void Button2_Click(object sender, EventArgs e)
         {       // YENİ
 
-            txtPROJE_REFNO.Text = "";
-            txtPROJE_ADI.Text = "";
-            txtACIKLAMA.Text = "";
-
+            txtKULLANICI_ADI.Text = "";
+            txtKULLANICI_REFNO.Text = "";
+            txtPAROLA.Text = "";
 
             pnlKayit.Visible = true;
             pnlListe.Visible = false;
@@ -50,37 +47,24 @@ namespace FIRMAWEBFORM.admin
         protected void Button3_Click(object sender, EventArgs e)
         {       // KAYDET
 
-            if (txtPROJE_REFNO.Text != "")
+            if (txtKULLANICI_REFNO.Text != "")
             {
-                int refno = Convert.ToInt32(txtPROJE_REFNO.Text);
-                PROJE p = db.PROJEs.Find(refno);
-                p.PROJE_ADI = txtPROJE_ADI.Text;
-                p.ACIKLAMA = HttpUtility.HtmlDecode(txtACIKLAMA.Text);
-                p.RESIM = RESIM1.FileName;
-                
-
-                RESIM1.SaveAs(Request.PhysicalApplicationPath + "/images/" + RESIM1.FileName);
-               
+                int refno = Convert.ToInt32(txtKULLANICI_REFNO.Text);
+                KULLANICI k = db.KULLANICIs.Find(refno);
+                k.KULLANICI_ADI = txtKULLANICI_ADI.Text;
+                k.PAROLA = txtPAROLA.Text;
                 db.SaveChanges();
             }
-
             else
             {
-
-                PROJE p = new PROJE();
-                p.PROJE_ADI = txtPROJE_ADI.Text;
-                p.ACIKLAMA = HttpUtility.HtmlDecode(txtACIKLAMA.Text);
-                p.RESIM = RESIM1.FileName;
-                
-
-                RESIM1.SaveAs(Request.PhysicalApplicationPath + "/images/" + RESIM1.FileName);
-                
-                db.PROJEs.Add(p);
+                KULLANICI k = new KULLANICI();
+                k.KULLANICI_ADI = txtKULLANICI_ADI.Text;
+                k.PAROLA = txtPAROLA.Text;
+                db.KULLANICIs.Add(k);
                 db.SaveChanges();
             }
 
-
-            GridView1.DataSource = db.PROJEs.ToList();
+            GridView1.DataSource = db.KULLANICIs.ToList();
             GridView1.DataBind();
 
             pnlKayit.Visible = false;
@@ -89,9 +73,9 @@ namespace FIRMAWEBFORM.admin
         }
 
         protected void Button4_Click(object sender, EventArgs e)
-        {        // VAZGEÇ
+        {       // VAZGEÇ
 
-            GridView1.DataSource = db.PROJEs.ToList();
+            GridView1.DataSource = db.KULLANICIs.ToList();
             GridView1.DataBind();
 
             pnlKayit.Visible = false;
@@ -102,21 +86,19 @@ namespace FIRMAWEBFORM.admin
         protected void Button5_Click(object sender, EventArgs e)
         {       // SİL
 
-            if (txtPROJE_REFNO.Text != "")
+            if (txtKULLANICI_REFNO.Text != "")
             {
-                int refno = Convert.ToInt32(txtPROJE_REFNO.Text);
-                PROJE p = db.PROJEs.Find(refno);
+                int refno = Convert.ToInt32(txtKULLANICI_REFNO.Text);
+                KULLANICI k = db.KULLANICIs.Find(refno);
 
-                db.PROJEs.Remove(p);
+                db.KULLANICIs.Remove(k);
 
                 db.SaveChanges();
 
-                GridView1.DataSource = db.PROJEs.ToList();
+                GridView1.DataSource = db.KULLANICIs.ToList();
                 GridView1.DataBind();
-
                 pnlKayit.Visible = false;
                 pnlListe.Visible = true;
-
             }
 
         }
@@ -124,18 +106,15 @@ namespace FIRMAWEBFORM.admin
         protected void Button1_Click(object sender, EventArgs e)
         {       // ARA
 
-            GridView1.DataSource = db.PROJEs.Where(p => p.PROJE_ADI.Contains(txtARA.Text)).ToList();
+            GridView1.DataSource = db.KULLANICIs.Where(k => k.KULLANICI_ADI.Contains(txtARA.Text)).ToList();
             GridView1.DataBind();
-
-            pnlKayit.Visible = false;
-            pnlListe.Visible = true;
 
         }
 
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridView1.PageIndex = e.NewPageIndex;
-            GridView1.DataSource = db.PROJEs.Where(p => p.PROJE_ADI.Contains(txtARA.Text)).ToList();
+            GridView1.DataSource = db.KULLANICIs.Where(k => k.KULLANICI_ADI.Contains(txtARA.Text)).ToList();
             GridView1.DataBind();
         }
     }
