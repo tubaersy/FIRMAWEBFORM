@@ -22,7 +22,7 @@
     <table cellspacing="0" class="auto-style1">
         <tr>
             <td>
-                <asp:Panel ID="pnlListe" runat="server">
+                <asp:Panel ID="pnlListe" runat="server" CssClass="button">
                     <table cellspacing="0" class="auto-style1">
                         <tr>
                             <td>
@@ -66,7 +66,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Panel ID="pnlKayit" runat="server" Visible="False">
+                <asp:Panel ID="pnlKayit" runat="server" Visible="False" CssClass="button">
                     <table cellspacing="0" class="auto-style1">
                         <tr>
                             <td class="auto-style3">&nbsp;</td>

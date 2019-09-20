@@ -53,13 +53,13 @@ namespace FIRMAWEBFORM.admin
                 int refno = Convert.ToInt32(txtSAYFA_REFNO.Text);
                 SAYFA s = db.SAYFAs.Find(refno);
                 s.BASLIK = txtBASLIK.Text;
-                s.ICERIK = txtICERIK.Text;
+                s.ICERIK = HttpUtility.HtmlDecode(txtICERIK.Text);
             }
             else
             {
                 SAYFA s = new SAYFA();
                 s.BASLIK = txtBASLIK.Text;
-                s.ICERIK = txtICERIK.Text;
+                s.ICERIK = HttpUtility.HtmlDecode(txtICERIK.Text);
                 db.SAYFAs.Add(s);
                 db.SaveChanges();
             }

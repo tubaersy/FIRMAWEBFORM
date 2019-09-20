@@ -20,7 +20,7 @@
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Panel ID="pnlListe" runat="server">
+    <asp:Panel ID="pnlListe" runat="server" CssClass="button">
     <table cellspacing="0" class="auto-style1">
         <tr>
             <td class="auto-style2">
@@ -54,7 +54,7 @@
 
     </asp:Panel>
 
-    <asp:Panel ID="pnlKayit" runat="server" Visible="False">
+    <asp:Panel ID="pnlKayit" runat="server" Visible="False" CssClass="button">
         <table cellspacing="0" class="auto-style1">
             <tr>
                 <td class="auto-style3">&nbsp;</td>
